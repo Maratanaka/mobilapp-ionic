@@ -96,4 +96,18 @@ async function register() {
 }
 </script>
 
+<style scoped>
+/* Fehér háttér és fekete szöveg a select mezőnél */
+ion-select, ion-select .select-interface {
+  --background: #fff !important;
+  --color: #000 !important;
+}
+
+/* Opciók listája */
+ion-select-option {
+  --background: #fff !important;
+  --color: #000 !important;
+}
+
+</style>
 

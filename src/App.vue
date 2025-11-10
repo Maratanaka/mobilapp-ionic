@@ -17,7 +17,6 @@ import { IonApp, IonRouterOutlet } from '@ionic/vue';
   --ion-input-background: #ffffff;
   --ion-button-background: #387eff;
   --ion-button-color: #fff;
-  --ion-select-option-background: #ffffff;
 }
 
 </style>
