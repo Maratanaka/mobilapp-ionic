@@ -83,7 +83,7 @@ export default {
 }
 
 .app-logo {
-  height: 250px; /* a logó magassága */
+  height: 350px; /* a logó magassága */
   width: auto;
 }
 
