@@ -2,16 +2,20 @@
   <ion-page>
     <ion-content fullscreen>
       <div class="login-wrapper">
+
         <div class="logo-container">
           <img src="/axoradata_white.png" alt="App Logo" class="app-logo" />
         </div>
 
         <ion-card>
           <ion-card-content>
+
+            <!-- Email -->
             <ion-item>
               <ion-input v-model="email" type="email" placeholder="Email"></ion-input>
             </ion-item>
 
+            <!-- Jelszó -->
             <ion-item>
               <ion-input v-model="password" type="password" placeholder="Jelszó"></ion-input>
             </ion-item>
@@ -24,6 +28,7 @@
               Még nincs fiókod?
               <router-link to="/register" class="no-underline">Regisztráció</router-link>
             </p>
+
           </ion-card-content>
         </ion-card>
       </div>
@@ -58,7 +63,7 @@ async function login() {
     return
   }
 
-  if (data.password_hash === password.value) {
+  if (data.password_hash === password.value) { // plaintext jelenleg, később hash
     localStorage.setItem('fullName', data.full_name)
     localStorage.setItem('role', data.role)
     router.push('/home')
