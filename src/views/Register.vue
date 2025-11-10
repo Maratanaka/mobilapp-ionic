@@ -10,11 +10,25 @@
         <ion-card>
           <ion-card-content>
             <ion-item>
+              <ion-input v-model="fullName" type="text" placeholder="Teljes név"></ion-input>
+            </ion-item>
+
+            <ion-item>
               <ion-input v-model="email" type="email" placeholder="Email"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-input v-model="password" type="password" placeholder="Jelszó"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Beosztás</ion-label>
+              <ion-select v-model="role" placeholder="Válassz beosztást">
+                <ion-select-option value="developer">Fejlesztő</ion-select-option>
+                <ion-select-option value="designer">Designer</ion-select-option>
+                <ion-select-option value="manager">Manager</ion-select-option>
+                <ion-select-option value="other">Egyéb</ion-select-option>
+              </ion-select>
             </ion-item>
 
             <ion-button expand="block" @ionFocus="register" @click="register">Regisztráció</ion-button>
