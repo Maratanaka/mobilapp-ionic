@@ -55,20 +55,23 @@ async function login() {
     .eq('email', email.value)
     .single()
 
-  if (error || !data) {
+  if (error) {
     alert('Nincs ilyen felhasználó!')
     return
   }
 
-  if (data.password_hash === password.value) {
-    localStorage.setItem('fullName', data.full_name)
-    localStorage.setItem('role', data.role)
-    router.push('/home')
-  } else {
-    alert('Hibás jelszó.')
+  if (data.password_hash !== password.value) {
+    alert('Hibás jelszó!')
+    return
   }
+
+  // Sikeres belépés
+  localStorage.setItem('fullName', data.full_name)
+  localStorage.setItem('role', data.role)
+  router.push('/home')
 }
 </script>
+
 
 <style scoped>
 .page-wrapper {

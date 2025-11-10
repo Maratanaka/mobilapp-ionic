@@ -21,6 +21,7 @@
     "@ionic/vue-router": "^8.0.0",
     "@supabase/supabase-js": "^2.80.0",
     "axios": "^1.13.2",
+    "bcryptjs": "^3.0.3",
     "ionicons": "^7.0.0",
     "vue": "^3.3.0",
     "vue-router": "^4.2.0"

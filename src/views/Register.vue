@@ -52,7 +52,9 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import supabase from '@/supabase'
-import { IonPage, IonContent, IonItem, IonInput, IonSelect, IonSelectOption, IonButton, IonCard, IonCardContent } from '@ionic/vue'
+import {
+  IonPage, IonContent, IonItem, IonInput, IonSelect, IonSelectOption, IonButton, IonCard, IonCardContent
+} from '@ionic/vue'
 
 const fullName = ref('')
 const email = ref('')
@@ -69,23 +71,37 @@ async function register() {
     return
   }
 
+  // Egyszerű email formátum ellenőrzés
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  if (!emailPattern.test(email.value)) {
+    alert('Érvénytelen email formátum!')
+    return
+  }
+
   const { data, error } = await supabase
     .from('users')
-    .insert([{ 
+    .insert([{
       full_name: fullName.value,
       email: email.value,
       password_hash: password.value,
-      role: role.value 
+      role: role.value
     }])
 
   if (error) {
-    alert(error.message)
-  } else {
-    alert('Sikeres regisztráció!')
-    router.push('/')
+    // Email már foglalt
+    if (error.code === '23505' || error.message.includes('duplicate')) {
+      alert('Ez az email már regisztrálva van!')
+    } else {
+      alert('Hiba történt a regisztráció során: ' + error.message)
+    }
+    return
   }
+
+  alert('Sikeres regisztráció!')
+  router.push('/')
 }
 </script>
+
 
 <style scoped>
 .page-wrapper {
