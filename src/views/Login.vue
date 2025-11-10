@@ -2,35 +2,37 @@
   <ion-page>
     
 
-    <ion-content class="ion-padding login-content">
-  <!-- Logó a tartalom tetején -->
-  <div class="logo-container">
-    <img src="\axoradata_white.png" alt="App Logo" class="app-logo" />
+  <ion-content fullscreen>
+  <div class="login-wrapper">
+    <div class="logo-container">
+      <img src="\axoradata_white.png" alt="App Logo" class="app-logo" />
+    </div>
+
+    <ion-card>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input v-model="email" type="email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Jelszó</ion-label>
+          <ion-input v-model="password" type="password"></ion-input>
+        </ion-item>
+
+        <ion-button expand="block" class="ion-margin-top" @click="login">
+          Bejelentkezés
+        </ion-button>
+
+        <p class="ion-text-center ion-margin-top">
+          Még nincs fiókod?
+          <router-link to="/register">Regisztráció</router-link>
+        </p>
+      </ion-card-content>
+    </ion-card>
   </div>
-
-  <ion-card>
-    <ion-card-content>
-      <ion-item>
-        <ion-label position="floating">Email</ion-label>
-        <ion-input v-model="email" type="email"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="floating">Jelszó</ion-label>
-        <ion-input v-model="password" type="password"></ion-input>
-      </ion-item>
-
-      <ion-button expand="block" class="ion-margin-top" @click="login">
-        Bejelentkezés
-      </ion-button>
-
-      <p class="ion-text-center ion-margin-top">
-        Még nincs fiókod?
-        <router-link to="/register">Regisztráció</router-link>
-      </p>
-    </ion-card-content>
-  </ion-card>
 </ion-content>
+
 
   </ion-page>
 </template>
@@ -66,9 +68,13 @@ export default {
 </script>
 
 <style scoped>
-.login-content {
-  padding-top: 100px; /* igény szerint növeld/csökkentsd */
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 120px; /* így tolódik le a tartalom */
 }
+
 
 .logo-container {
   display: flex;
