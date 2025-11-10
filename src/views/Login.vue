@@ -100,7 +100,7 @@ ion-card {
 
 /* Input és Select világos/sötét módhoz */
 ion-item, ion-input, ion-select {
-  --background: var(--ion-background-color);
+  --background: transparent;
   --color: var(--ion-text-color);
   --placeholder-color: var(--ion-color-step-500);
 }
