@@ -88,7 +88,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 60px;
+  margin-top: 80px; /* lentebb tolja a tartalmat a full-screen miatt */
 }
 
 .logo-container {
@@ -98,7 +98,7 @@ export default {
 }
 
 .app-logo {
-  height: 350px;
+  height: 250px;
   width: auto;
 }
 
@@ -106,7 +106,7 @@ ion-card {
   width: 90%;
   max-width: 400px;
   border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   margin: 0 auto;
 }
 
