@@ -12,8 +12,11 @@ import { IonApp, IonRouterOutlet } from '@ionic/vue';
 .force-light {
   --ion-background-color: #ffffff;
   --ion-text-color: #000000;
-   --ion-card-background: #ffffff;
-    --ion-item-background: #ffffff;
+  --ion-card-background: #ffffff;
+  --ion-item-background: #ffffff;
+  --ion-input-background: #ffffff;
+  --ion-button-background: #387eff;
+  --ion-button-color: #fff;
 }
 
 </style>
