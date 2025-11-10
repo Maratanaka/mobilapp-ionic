@@ -88,8 +88,11 @@ export default {
 }
 
 ion-card {
+  width: 90%;
+  max-width: 400px;
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
 }
 
 ion-card-content {
@@ -103,7 +106,7 @@ ion-item {
 
 ion-button {
   --border-radius: 12px;
-  --background: #3880ff; /* Ionic kék */
+  --background: #387eff; /* Ionic kék */
   --color: #fff;
   font-weight: bold;
   padding: 12px 0;
