@@ -51,7 +51,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useFocus } from '@/composables/useFocus'
-import { IonPage, IonContent, IonItem, IonInput, IonButton, IonCard, IonCardContent } from '@ionic/vue'
+import { IonPage, IonContent, IonItem, IonInput, IonButton, IonCard, IonCardContent, onIonViewWillEnter } from '@ionic/vue'
 
 export default {
   name: 'RegisterPage',
@@ -62,6 +62,12 @@ export default {
     const email = ref('')
     const password = ref('')
     const router = useRouter()
+
+    // <-- ide tesszük az ionViewWillEnter-t
+    onIonViewWillEnter(() => {
+      const wrapper = document.querySelector('.register-wrapper')
+      if(wrapper) wrapper.style.marginTop = '60px' // vagy amennyi kell
+    })
 
     function register() {
       if (email.value && password.value) {
@@ -76,6 +82,7 @@ export default {
   }
 }
 </script>
+
 
 <style scoped>
 .no-underline {
