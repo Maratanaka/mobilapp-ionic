@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-    <ion-content fullscreen>
+    <ion-content fullscreen class="ion-padding-top">
       <div class="register-wrapper">
 
         <!-- Logó -->
