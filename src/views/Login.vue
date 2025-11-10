@@ -26,7 +26,7 @@
 
         <p class="ion-text-center ion-margin-top">
           Még nincs fiókod?
-          <router-link to="/register">Regisztráció</router-link>
+          <router-link to="/register" class="no-underline">Regisztráció</router-link>
         </p>
       </ion-card-content>
     </ion-card>
@@ -68,6 +68,12 @@ export default {
 </script>
 
 <style scoped>
+.no-underline {
+  color: #3880ff;
+  text-decoration: none !important; /* !important kell scoped miatt */
+  font-weight: bold;
+}
+
 .login-wrapper {
   display: flex;
   flex-direction: column;
@@ -94,6 +100,7 @@ ion-card {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
 }
+
 
 ion-card-content {
   display: flex;
