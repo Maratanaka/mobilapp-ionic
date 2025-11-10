@@ -55,6 +55,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import supabase from '@/supabase'
 import { IonPage, IonContent, IonItem, IonInput, IonSelect, IonSelectOption, IonButton, IonCard, IonCardContent } from '@ionic/vue'
 
 const fullName = ref('')
@@ -72,9 +73,22 @@ async function register() {
     return
   }
 
-  // Itt jön a regisztráció logikád, pl. supabase hívás
-  alert('Sikeres regisztráció!')
-  router.push('/')
+  const { data, error } = await supabase
+    .from('users')
+    .insert([{
+      full_name: fullName.value,
+      email: email.value,
+      password_hash: password.value, // plaintext jelenleg, később hash-elheted
+      role: role.value
+    }])
+
+  if (error) {
+    console.log(error)
+    alert(error.message)
+  } else {
+    alert('Sikeres regisztráció!')
+    router.push('/')
+  }
 }
 </script>
 
