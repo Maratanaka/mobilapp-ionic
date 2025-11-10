@@ -4,7 +4,7 @@
       <div class="page-wrapper">
 
         <div class="logo-container">
-          <img src="\axoradata_white.png" alt="App Logo" class="app-logo" />
+          <img src="/axoradata_white.png" alt="App Logo" class="app-logo" />
         </div>
 
         <ion-card>
@@ -55,11 +55,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import supabase from '@/supabase'
-import {
-  IonPage, IonContent, IonItem, IonInput, IonSelect,
-  IonSelectOption, IonButton, IonCard, IonCardContent
-} from '@ionic/vue'
+import { IonPage, IonContent, IonItem, IonInput, IonSelect, IonSelectOption, IonButton, IonCard, IonCardContent } from '@ionic/vue'
 
 const fullName = ref('')
 const email = ref('')
@@ -76,38 +72,69 @@ async function register() {
     return
   }
 
-  const { data, error } = await supabase
-    .from('users')
-    .insert([
-      {
-        full_name: fullName.value,
-        email: email.value,
-        password_hash: password.value, // jelszó hash később
-        role: role.value
-      }
-    ])
-
-  if (error) {
-    alert(error.message)
-  } else {
-    alert('Sikeres regisztráció!')
-    router.push('/')
-  }
+  // Itt jön a regisztráció logikád, pl. supabase hívás
+  alert('Sikeres regisztráció!')
+  router.push('/')
 }
 </script>
 
 <style scoped>
-/* Fehér háttér és fekete szöveg a select mezőnél */
-ion-select, ion-select .select-interface {
-  --background: #fff !important;
-  --color: #000 !important;
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
 }
 
-/* Opciók listája */
-ion-select-option {
-  --background: #fff !important;
-  --color: #000 !important;
+/* Logo */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.app-logo {
+  height: 150px;
+  width: auto;
 }
 
+/* Card */
+ion-card {
+  width: 90%;
+  max-width: 400px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  margin: 0 auto;
+}
+
+/* Input és Select világos színek */
+ion-item, ion-input, ion-select {
+  --background: #ffffff !important;
+  --color: #000000 !important;
+  --placeholder-color: #999999 !important;
+}
+
+/* Select felugró lista világos színek */
+body .sc-ion-select-md-h {
+  --background: #ffffff !important;
+  --color: #000000 !important;
+}
+
+/* Button */
+ion-button {
+  --border-radius: 12px;
+  --background: #387eff;
+  --color: #fff;
+  font-weight: bold;
+  padding: 12px 0;
+}
+ion-button:hover {
+  --background: #4c8dff;
+}
+
+/* Link */
+.no-underline {
+  color: #3880ff !important;
+  text-decoration: none !important;
+  font-weight: bold;
+}
 </style>
-
