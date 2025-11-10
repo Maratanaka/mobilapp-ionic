@@ -2,10 +2,10 @@
   <ion-page>
     
 
-    <ion-content class="ion-padding">
+    <ion-content class="ion-padding login-content">
   <!-- Logó a tartalom tetején -->
   <div class="logo-container">
-    <img src="\public\axoradata_white.png" alt="App Logo" class="app-logo" />
+    <img src="\axoradata_white.png" alt="App Logo" class="app-logo" />
   </div>
 
   <ion-card>
@@ -66,6 +66,10 @@ export default {
 </script>
 
 <style scoped>
+.login-content {
+  padding-top: 100px; /* igény szerint növeld/csökkentsd */
+}
+
 .logo-container {
   display: flex;
   justify-content: center;
