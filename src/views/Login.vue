@@ -72,7 +72,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 120px; /* így tolódik le a tartalom */
+  margin-top: 60px; /* így tolódik le a tartalom */
 }
 
 
