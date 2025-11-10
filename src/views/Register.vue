@@ -52,39 +52,48 @@
   </ion-page>
 </template>
 
-<script>
+<script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { useFocus } from '@/composables/useFocus'
-import { IonPage, IonContent, IonItem, IonInput, IonSelect, IonSelectOption, IonButton, IonCard, IonCardContent } from '@ionic/vue'
+import supabase from '@/supabase'
+import {
+  IonPage, IonContent, IonItem, IonInput, IonSelect,
+  IonSelectOption, IonButton, IonCard, IonCardContent
+} from '@ionic/vue'
 
-export default {
-  name: 'RegisterPage',
-  components: { IonPage, IonContent, IonItem, IonInput, IonSelect, IonSelectOption, IonButton, IonCard, IonCardContent },
-  setup() {
-    useFocus()
-    
-    const mounted = ref(false)
-    onMounted(() => { mounted.value = true }) // IonSelect csak kliens oldalon jelenik meg
+const fullName = ref('')
+const email = ref('')
+const password = ref('')
+const role = ref('')
+const mounted = ref(false)
+const router = useRouter()
 
-    const fullName = ref('')
-    const email = ref('')
-    const password = ref('')
-    const role = ref('')
-    const router = useRouter()
+onMounted(() => { mounted.value = true })
 
-    function register() {
-  if(fullName.value && email.value && password.value && role.value){
-    localStorage.setItem('user', email.value)
-    localStorage.setItem('fullName', fullName.value) // ← hozzáadva
-    localStorage.setItem('role', role.value)         // ← hozzáadva
-    router.push('/home')
-  } else {
+async function register() {
+  if (!fullName.value || !email.value || !password.value || !role.value) {
     alert('Tölts ki minden mezőt!')
+    return
   }
-}
 
-    return { fullName, email, password, role, mounted, register }
+  const { data, error } = await supabase
+    .from('users')
+    .insert([
+      {
+        full_name: fullName.value,
+        email: email.value,
+        password_hash: password.value, // jelszó hash később
+        role: role.value
+      }
+    ])
+
+  if (error) {
+    alert(error.message)
+  } else {
+    alert('Sikeres regisztráció!')
+    router.push('/')
   }
 }
 </script>
+
+

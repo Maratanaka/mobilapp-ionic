@@ -10,7 +10,7 @@
 
         <ion-card>
           <ion-card-content class="text-center">
-            <h2>Üdv újra, {{ fullName }}!</h2>
+            <h2>Üdv, {{ fullName }}!</h2>
             <p>A te beosztásod: <strong>{{ role }}</strong></p>
           </ion-card-content>
         </ion-card>
