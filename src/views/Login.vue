@@ -12,22 +12,12 @@
         <ion-card>
           <ion-card-content>
 
-            <!-- Email input -->
             <ion-item>
-              <ion-input 
-                v-model="email" 
-                type="email" 
-                placeholder="Email">
-              </ion-input>
+              <ion-input v-model="email" type="email" placeholder="Email"></ion-input>
             </ion-item>
 
-            <!-- Password input -->
             <ion-item>
-              <ion-input 
-                v-model="password" 
-                type="password" 
-                placeholder="Jelszó">
-              </ion-input>
+              <ion-input v-model="password" type="password" placeholder="Jelszó"></ion-input>
             </ion-item>
 
             <ion-button expand="block" class="ion-margin-top" @click="login">
@@ -51,7 +41,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useFocus } from '@/composables/useFocus'
-import { IonPage, IonContent, IonItem, IonInput, IonButton, IonCard, IonCardContent } from '@ionic/vue'
+import { IonPage, IonContent, IonItem, IonInput, IonButton, IonCard, IonCardContent, onIonViewWillEnter } from '@ionic/vue'
 
 export default {
   name: 'LoginPage',
@@ -63,8 +53,14 @@ export default {
     const password = ref('')
     const router = useRouter()
 
+    // Margin-top beállítása minden oldalváltáskor
+    onIonViewWillEnter(() => {
+      const wrapper = document.querySelector('.login-wrapper')
+      if(wrapper) wrapper.style.marginTop = '60px'
+    })
+
     function login() {
-      if (email.value && password.value) {
+      if(email.value && password.value) {
         localStorage.setItem('user', email.value)
         router.push('/home')
       } else {
@@ -88,7 +84,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 60px;
 }
 
 .logo-container {
@@ -106,7 +101,7 @@ ion-card {
   width: 90%;
   max-width: 400px;
   border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   margin: 0 auto;
 }
 

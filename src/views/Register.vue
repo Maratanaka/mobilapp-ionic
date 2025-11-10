@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-    <ion-content fullscreen class="ion-padding-top">
+    <ion-content fullscreen>
       <div class="register-wrapper">
 
         <!-- Logó -->
@@ -12,22 +12,12 @@
         <ion-card>
           <ion-card-content>
 
-            <!-- Email input -->
             <ion-item>
-              <ion-input 
-                v-model="email" 
-                type="email" 
-                placeholder="Email">
-              </ion-input>
+              <ion-input v-model="email" type="email" placeholder="Email"></ion-input>
             </ion-item>
 
-            <!-- Password input -->
             <ion-item>
-              <ion-input 
-                v-model="password" 
-                type="password" 
-                placeholder="Jelszó">
-              </ion-input>
+              <ion-input v-model="password" type="password" placeholder="Jelszó"></ion-input>
             </ion-item>
 
             <ion-button expand="block" class="ion-margin-top" @click="register">
@@ -63,14 +53,13 @@ export default {
     const password = ref('')
     const router = useRouter()
 
-    // <-- ide tesszük az ionViewWillEnter-t
     onIonViewWillEnter(() => {
       const wrapper = document.querySelector('.register-wrapper')
-      if(wrapper) wrapper.style.marginTop = '60px' // vagy amennyi kell
+      if(wrapper) wrapper.style.marginTop = '60px'
     })
 
     function register() {
-      if (email.value && password.value) {
+      if(email.value && password.value) {
         localStorage.setItem('user', email.value)
         router.push('/home')
       } else {
@@ -83,7 +72,6 @@ export default {
 }
 </script>
 
-
 <style scoped>
 .no-underline {
   color: #3880ff;
@@ -95,7 +83,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 60px; /* lentebb tolja a tartalmat a full-screen miatt */
 }
 
 .logo-container {
@@ -113,7 +100,7 @@ ion-card {
   width: 90%;
   max-width: 400px;
   border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   margin: 0 auto;
 }
 
