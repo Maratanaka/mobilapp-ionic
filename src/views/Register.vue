@@ -10,22 +10,18 @@
         <ion-card>
           <ion-card-content>
 
-            <!-- Teljes név -->
             <ion-item>
               <ion-input v-model="fullName" type="text" placeholder="Teljes név"></ion-input>
             </ion-item>
 
-            <!-- Email -->
             <ion-item>
               <ion-input v-model="email" type="email" placeholder="Email"></ion-input>
             </ion-item>
 
-            <!-- Jelszó -->
             <ion-item>
               <ion-input v-model="password" type="password" placeholder="Jelszó"></ion-input>
             </ion-item>
 
-            <!-- Beosztás select -->
             <ion-item>
               <ion-select v-if="mounted" v-model="role" placeholder="Válassz beosztást">
                 <ion-select-option value="developer">Fejlesztő</ion-select-option>
@@ -35,7 +31,7 @@
               </ion-select>
             </ion-item>
 
-            <ion-button expand="block" class="ion-margin-top" @click="register">
+            <ion-button expand="block" @click="register">
               Regisztráció
             </ion-button>
 
@@ -75,15 +71,14 @@ async function register() {
 
   const { data, error } = await supabase
     .from('users')
-    .insert([{
+    .insert([{ 
       full_name: fullName.value,
       email: email.value,
-      password_hash: password.value, // plaintext jelenleg, később hash-elheted
-      role: role.value
+      password_hash: password.value,
+      role: role.value 
     }])
 
   if (error) {
-    console.log(error)
     alert(error.message)
   } else {
     alert('Sikeres regisztráció!')
@@ -120,35 +115,32 @@ ion-card {
   margin: 0 auto;
 }
 
-/* Input és Select világos színek */
+/* Input és Select világos/sötét módhoz */
 ion-item, ion-input, ion-select {
-  --background: #ffffff !important;
-  --color: #000000 !important;
-  --placeholder-color: #999999 !important;
+  --background: var(--ion-background-color);
+  --color: var(--ion-text-color);
+  --placeholder-color: var(--ion-color-step-500);
 }
 
-/* Select felugró lista világos színek */
+/* Select felugró lista világos/sötét módhoz */
 body .sc-ion-select-md-h {
-  --background: #ffffff !important;
-  --color: #000000 !important;
+  --background: var(--ion-background-color);
+  --color: var(--ion-text-color);
 }
 
 /* Button */
 ion-button {
   --border-radius: 12px;
-  --background: #387eff;
-  --color: #fff;
+  --background: var(--ion-color-primary);
+  --color: var(--ion-color-light);
   font-weight: bold;
   padding: 12px 0;
-}
-ion-button:hover {
-  --background: #4c8dff;
 }
 
 /* Link */
 .no-underline {
-  color: #3880ff !important;
-  text-decoration: none !important;
+  color: var(--ion-color-primary);
+  text-decoration: none;
   font-weight: bold;
 }
 </style>

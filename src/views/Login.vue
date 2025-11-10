@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <ion-content fullscreen>
-      <div class="login-wrapper">
+      <div class="page-wrapper">
 
         <div class="logo-container">
           <img src="/axoradata_white.png" alt="App Logo" class="app-logo" />
@@ -9,18 +9,15 @@
 
         <ion-card>
           <ion-card-content>
-
-            <!-- Email -->
             <ion-item>
               <ion-input v-model="email" type="email" placeholder="Email"></ion-input>
             </ion-item>
 
-            <!-- Jelszó -->
             <ion-item>
               <ion-input v-model="password" type="password" placeholder="Jelszó"></ion-input>
             </ion-item>
 
-            <ion-button expand="block" class="ion-margin-top" @click="login">
+            <ion-button expand="block" @click="login">
               Bejelentkezés
             </ion-button>
 
@@ -28,9 +25,9 @@
               Még nincs fiókod?
               <router-link to="/register" class="no-underline">Regisztráció</router-link>
             </p>
-
           </ion-card-content>
         </ion-card>
+
       </div>
     </ion-content>
   </ion-page>
@@ -58,12 +55,12 @@ async function login() {
     .eq('email', email.value)
     .single()
 
-  if (error) {
+  if (error || !data) {
     alert('Nincs ilyen felhasználó!')
     return
   }
 
-  if (data.password_hash === password.value) { // plaintext jelenleg, később hash
+  if (data.password_hash === password.value) {
     localStorage.setItem('fullName', data.full_name)
     localStorage.setItem('role', data.role)
     router.push('/home')
@@ -74,7 +71,7 @@ async function login() {
 </script>
 
 <style scoped>
-.login-wrapper {
+.page-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -101,29 +98,26 @@ ion-card {
   margin: 0 auto;
 }
 
-/* Input világos színek */
-ion-item, ion-input {
-  --background: #ffffff !important;
-  --color: #000000 !important;
-  --placeholder-color: #999999 !important;
+/* Input és Select világos/sötét módhoz */
+ion-item, ion-input, ion-select {
+  --background: var(--ion-background-color);
+  --color: var(--ion-text-color);
+  --placeholder-color: var(--ion-color-step-500);
 }
 
 /* Button */
 ion-button {
   --border-radius: 12px;
-  --background: #387eff;
-  --color: #fff;
+  --background: var(--ion-color-primary);
+  --color: var(--ion-color-light);
   font-weight: bold;
   padding: 12px 0;
-}
-ion-button:hover {
-  --background: #4c8dff;
 }
 
 /* Link */
 .no-underline {
-  color: #3880ff !important;
-  text-decoration: none !important;
+  color: var(--ion-color-primary);
+  text-decoration: none;
   font-weight: bold;
 }
 </style>

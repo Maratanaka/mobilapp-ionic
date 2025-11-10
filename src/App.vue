@@ -1,5 +1,5 @@
 <template>
-  <ion-app class="force-light">
+  <ion-app>
     <ion-router-outlet />
   </ion-app>
 </template>
@@ -9,14 +9,4 @@ import { IonApp, IonRouterOutlet } from '@ionic/vue';
 </script>
 
 <style>
-.force-light {
-  --ion-background-color: #ffffff;
-  --ion-text-color: #000000;
-  --ion-card-background: #ffffff;
-  --ion-item-background: #ffffff;
-  --ion-input-background: #ffffff;
-  --ion-button-background: #387eff;
-  --ion-button-color: #fff;
-}
-
 </style>
