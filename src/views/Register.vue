@@ -1,34 +1,48 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Regisztráció</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    <ion-content fullscreen>
+      <div class="register-wrapper">
 
-    <ion-content class="ion-padding">
-      <ion-card>
-        <ion-card-content>
-          <ion-item>
-            <ion-label position="floating">Email</ion-label>
-            <ion-input v-model="email" type="email"></ion-input>
-          </ion-item>
+        <!-- Logó -->
+        <div class="logo-container">
+          <img src="\axoradata_white.png" alt="App Logo" class="app-logo" />
+        </div>
 
-          <ion-item>
-            <ion-label position="floating">Jelszó</ion-label>
-            <ion-input v-model="password" type="password"></ion-input>
-          </ion-item>
+        <!-- Regisztráció card -->
+        <ion-card>
+          <ion-card-content>
 
-          <ion-button expand="block" class="ion-margin-top" @click="register">
-            Regisztráció
-          </ion-button>
+            <!-- Email input -->
+            <ion-item>
+              <ion-input 
+                v-model="email" 
+                type="email" 
+                placeholder="Email">
+              </ion-input>
+            </ion-item>
 
-          <p class="ion-text-center ion-margin-top">
-            Van már fiókod?
-            <router-link to="/">Bejelentkezés</router-link>
-          </p>
-        </ion-card-content>
-      </ion-card>
+            <!-- Password input -->
+            <ion-item>
+              <ion-input 
+                v-model="password" 
+                type="password" 
+                placeholder="Jelszó">
+              </ion-input>
+            </ion-item>
+
+            <ion-button expand="block" class="ion-margin-top" @click="register">
+              Regisztráció
+            </ion-button>
+
+            <p class="ion-text-center ion-margin-top">
+              Van már fiókod?
+              <router-link to="/" class="no-underline">Bejelentkezés</router-link>
+            </p>
+
+          </ion-card-content>
+        </ion-card>
+
+      </div>
     </ion-content>
   </ion-page>
 </template>
@@ -37,11 +51,11 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useFocus } from '@/composables/useFocus'
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonInput, IonButton, IonCard, IonCardContent } from '@ionic/vue'
+import { IonPage, IonContent, IonItem, IonInput, IonButton, IonCard, IonCardContent } from '@ionic/vue'
 
 export default {
   name: 'RegisterPage',
-  components: { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonInput, IonButton, IonCard, IonCardContent },
+  components: { IonPage, IonContent, IonItem, IonInput, IonButton, IonCard, IonCardContent },
   setup() {
     useFocus()
 
@@ -50,8 +64,12 @@ export default {
     const router = useRouter()
 
     function register() {
-      localStorage.setItem('user', email.value)
-      router.push('/home')
+      if (email.value && password.value) {
+        localStorage.setItem('user', email.value)
+        router.push('/home')
+      } else {
+        alert('Tölts ki minden mezőt!')
+      }
     }
 
     return { email, password, register }
@@ -60,9 +78,36 @@ export default {
 </script>
 
 <style scoped>
+.no-underline {
+  color: #3880ff;
+  text-decoration: none !important;
+  font-weight: bold;
+}
+
+.register-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.app-logo {
+  height: 350px;
+  width: auto;
+}
+
 ion-card {
+  width: 90%;
+  max-width: 400px;
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
 }
 
 ion-card-content {
@@ -76,28 +121,19 @@ ion-item {
 
 ion-button {
   --border-radius: 12px;
-  --background: #10dc60; /* zöld */
+  --background: #387eff;
   --color: #fff;
   font-weight: bold;
   padding: 12px 0;
 }
 
 ion-button:hover {
-  --background: #28e08f;
+  --background: #4c8dff;
 }
 
 p {
   text-align: center;
   font-size: 14px;
   margin-top: 10px;
-}
-
-router-link {
-  color: #10dc60;
-  text-decoration: none;
-}
-
-router-link:hover {
-  text-decoration: underline;
 }
 </style>
