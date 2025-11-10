@@ -74,13 +74,15 @@ export default {
     const router = useRouter()
 
     function register() {
-      if(fullName.value && email.value && password.value && role.value){
-        localStorage.setItem('user', email.value)
-        router.push('/home')
-      } else {
-        alert('Tölts ki minden mezőt!')
-      }
-    }
+  if(fullName.value && email.value && password.value && role.value){
+    localStorage.setItem('user', email.value)
+    localStorage.setItem('fullName', fullName.value) // ← hozzáadva
+    localStorage.setItem('role', role.value)         // ← hozzáadva
+    router.push('/home')
+  } else {
+    alert('Tölts ki minden mezőt!')
+  }
+}
 
     return { fullName, email, password, role, mounted, register }
   }

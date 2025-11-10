@@ -1,20 +1,23 @@
 <template>
   <ion-page>
     <ion-content fullscreen>
-      <div class="page-wrapper">
+      <div class="home-wrapper">
 
+        <!-- Logó -->
         <div class="logo-container">
           <img src="\axoradata_white.png" alt="App Logo" class="app-logo" />
         </div>
 
         <ion-card>
-          <ion-card-content>
-            <h2>Üdv újra, {{ user }}!</h2>
-            <p>Itt jelenhetnek meg az információk, például hírek, adatok vagy statisztikák.</p>
-
-            <ion-button expand="block" @ionFocus="logout" @click="logout">Kijelentkezés</ion-button>
+          <ion-card-content class="text-center">
+            <h2>Üdv újra, {{ fullName }}!</h2>
+            <p>A te beosztásod: <strong>{{ role }}</strong></p>
           </ion-card-content>
         </ion-card>
+
+        <ion-button expand="block" class="ion-margin-top" @click="logout">
+          Kijelentkezés
+        </ion-button>
 
       </div>
     </ion-content>
@@ -24,33 +27,73 @@
 <script>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { IonPage, IonContent, IonCard, IonCardContent, IonButton } from '@ionic/vue'
-import { onIonViewWillEnter } from '@ionic/vue'
+import { IonPage, IonContent, IonButton } from '@ionic/vue'
 
 export default {
   name: 'HomePage',
-  components: { IonPage, IonContent, IonCard, IonCardContent, IonButton },
+  components: { IonPage, IonContent, IonButton },
   setup() {
-    const user = ref('')
     const router = useRouter()
+    const fullName = ref('')
+    const role = ref('')
 
     onMounted(() => {
-      const storedUser = localStorage.getItem('user')
-      if(!storedUser) router.push('/')
-      else user.value = storedUser
-    })
-
-    onIonViewWillEnter(() => {
-      const wrapper = document.querySelector('.page-wrapper')
-      if(wrapper) wrapper.style.marginTop = '60px'
+      fullName.value = localStorage.getItem('fullName') || 'Felhasználó'
+      role.value = localStorage.getItem('role') || 'Ismeretlen'
     })
 
     function logout() {
       localStorage.removeItem('user')
+      localStorage.removeItem('fullName')
+      localStorage.removeItem('role')
       router.push('/')
     }
 
-    return { user, logout }
+    return { fullName, role, logout }
   }
 }
 </script>
+
+<style scoped>
+.home-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  padding: 0 20px;
+}
+
+.logo-container {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.app-logo {
+  height: 200px;
+  width: auto;
+}
+
+h2 {
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+p {
+  font-size: 18px;
+}
+
+ion-card {
+  width: 90%;
+  max-width: 400px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+ion-button {
+  --border-radius: 12px;
+  --background: #387eff;
+  --color: #fff;
+}
+</style>
