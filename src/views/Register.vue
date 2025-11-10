@@ -17,7 +17,7 @@
               <ion-input v-model="password" type="password" placeholder="Jelszó"></ion-input>
             </ion-item>
 
-            <ion-button expand="block" @click="register">Regisztráció</ion-button>
+            <ion-button expand="block" @ionFocus="register" @click="register">Regisztráció</ion-button>
 
             <p>
               Van már fiókod?

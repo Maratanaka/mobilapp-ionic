@@ -17,7 +17,7 @@
               <ion-input v-model="password" type="password" placeholder="Jelszó"></ion-input>
             </ion-item>
 
-            <ion-button expand="block" @click="login">Bejelentkezés</ion-button>
+            <ion-button expand="block" @ionFocus="login" @click="login">Bejelentkezés</ion-button>
 
             <p>
               Még nincs fiókod?

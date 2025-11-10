@@ -12,7 +12,7 @@
             <h2>Üdv újra, {{ user }}!</h2>
             <p>Itt jelenhetnek meg az információk, például hírek, adatok vagy statisztikák.</p>
 
-            <ion-button expand="block" @click="logout">Kijelentkezés</ion-button>
+            <ion-button expand="block" @ionFocus="logout" @click="logout">Kijelentkezés</ion-button>
           </ion-card-content>
         </ion-card>
 
