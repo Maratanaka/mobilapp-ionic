@@ -1,39 +1,49 @@
 <template>
   <ion-page>
-    
+    <ion-content fullscreen>
+      <div class="login-wrapper">
 
-  <ion-content fullscreen>
-  <div class="login-wrapper">
-    <div class="logo-container">
-      <img src="\axoradata_white.png" alt="App Logo" class="app-logo" />
-    </div>
+        <!-- Logó -->
+        <div class="logo-container">
+          <img src="\axoradata_white.png" alt="App Logo" class="app-logo" />
+        </div>
 
-    <ion-card>
-      <ion-card-content>
-        <ion-item>
-          <ion-label position="floating">Email</ion-label>
-          <ion-input v-model="email" type="email"></ion-input>
-        </ion-item>
+        <!-- Bejelentkezés card -->
+        <ion-card>
+          <ion-card-content>
 
-        <ion-item>
-          <ion-label position="floating">Jelszó</ion-label>
-          <ion-input v-model="password" type="password"></ion-input>
-        </ion-item>
+            <!-- Email input -->
+            <ion-item>
+              <ion-input 
+                v-model="email" 
+                type="email" 
+                placeholder="Email">
+              </ion-input>
+            </ion-item>
 
-        <ion-button expand="block" class="ion-margin-top" @click="login">
-          Bejelentkezés
-        </ion-button>
+            <!-- Password input -->
+            <ion-item>
+              <ion-input 
+                v-model="password" 
+                type="password" 
+                placeholder="Jelszó">
+              </ion-input>
+            </ion-item>
 
-        <p class="ion-text-center ion-margin-top">
-          Még nincs fiókod?
-          <router-link to="/register" class="no-underline">Regisztráció</router-link>
-        </p>
-      </ion-card-content>
-    </ion-card>
-  </div>
-</ion-content>
+            <ion-button expand="block" class="ion-margin-top" @click="login">
+              Bejelentkezés
+            </ion-button>
 
+            <p class="ion-text-center ion-margin-top">
+              Még nincs fiókod?
+              <router-link to="/register" class="no-underline">Regisztráció</router-link>
+            </p>
 
+          </ion-card-content>
+        </ion-card>
+
+      </div>
+    </ion-content>
   </ion-page>
 </template>
 
@@ -41,11 +51,11 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useFocus } from '@/composables/useFocus'
-import { IonPage, IonContent, IonItem, IonLabel, IonInput, IonButton, IonCard, IonCardContent } from '@ionic/vue'
+import { IonPage, IonContent, IonItem, IonInput, IonButton, IonCard, IonCardContent } from '@ionic/vue'
 
 export default {
   name: 'LoginPage',
-  components: { IonPage, IonContent, IonItem, IonLabel, IonInput, IonButton, IonCard, IonCardContent },
+  components: { IonPage, IonContent, IonItem, IonInput, IonButton, IonCard, IonCardContent },
   setup() {
     useFocus()
 
@@ -70,7 +80,7 @@ export default {
 <style scoped>
 .no-underline {
   color: #3880ff;
-  text-decoration: none !important; /* !important kell scoped miatt */
+  text-decoration: none !important;
   font-weight: bold;
 }
 
@@ -78,18 +88,17 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 60px; /* így tolódik le a tartalom */
+  margin-top: 60px;
 }
-
 
 .logo-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px; /* távolság a form felett */
+  margin-bottom: 20px;
 }
 
 .app-logo {
-  height: 350px; /* a logó magassága */
+  height: 350px;
   width: auto;
 }
 
@@ -100,7 +109,6 @@ ion-card {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
 }
-
 
 ion-card-content {
   display: flex;
@@ -113,7 +121,7 @@ ion-item {
 
 ion-button {
   --border-radius: 12px;
-  --background: #387eff; /* Ionic kék */
+  --background: #387eff;
   --color: #fff;
   font-weight: bold;
   padding: 12px 0;
@@ -127,14 +135,5 @@ p {
   text-align: center;
   font-size: 14px;
   margin-top: 10px;
-}
-
-router-link {
-  color: #3880ff;
-  text-decoration: none;
-}
-
-router-link:hover {
-  text-decoration: underline;
 }
 </style>
