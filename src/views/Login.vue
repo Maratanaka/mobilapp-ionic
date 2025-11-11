@@ -37,6 +37,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import supabase from '@/supabase'
+import bcrypt from 'bcryptjs'
 import { IonPage, IonContent, IonItem, IonInput, IonButton, IonCard, IonCardContent } from '@ionic/vue'
 
 const email = ref('')
@@ -55,15 +56,13 @@ async function login() {
     .eq('email', email.value)
     .single()
 
-  if (error) {
-    alert('Nincs ilyen felhasználó!')
-    return
-  }
-
-  if (data.password_hash !== password.value) {
-    alert('Hibás jelszó!')
-    return
-  }
+  if (data && bcrypt.compareSync(password.value, data.password_hash)) {
+  localStorage.setItem('fullName', data.full_name)
+  localStorage.setItem('role', data.role)
+  router.push('/home')
+} else {
+  alert('Hibás email vagy jelszó.')
+}
 
   // Sikeres belépés
   localStorage.setItem('fullName', data.full_name)

@@ -52,6 +52,7 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import supabase from '@/supabase'
+import bcrypt from 'bcryptjs'
 import {
   IonPage, IonContent, IonItem, IonInput, IonSelect, IonSelectOption, IonButton, IonCard, IonCardContent
 } from '@ionic/vue'
@@ -71,34 +72,24 @@ async function register() {
     return
   }
 
-  // Egyszerű email formátum ellenőrzés
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  if (!emailPattern.test(email.value)) {
-    alert('Érvénytelen email formátum!')
-    return
-  }
+  // Hash-eljük a jelszót
+  const hashedPassword = bcrypt.hashSync(password.value, 10)
 
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from('users')
-    .insert([{
-      full_name: fullName.value,
-      email: email.value,
-      password_hash: password.value,
-      role: role.value
+    .insert([{ 
+      full_name: fullName.value, 
+      email: email.value, 
+      password_hash: hashedPassword, 
+      role: role.value 
     }])
 
   if (error) {
-    // Email már foglalt
-    if (error.code === '23505' || error.message.includes('duplicate')) {
-      alert('Ez az email már regisztrálva van!')
-    } else {
-      alert('Hiba történt a regisztráció során: ' + error.message)
-    }
-    return
+    alert(error.message)
+  } else {
+    alert('Sikeres regisztráció!')
+    router.push('/')
   }
-
-  alert('Sikeres regisztráció!')
-  router.push('/')
 }
 </script>
 
