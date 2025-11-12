@@ -59,6 +59,7 @@ async function login() {
   if (data && bcrypt.compareSync(password.value, data.password_hash)) {
   localStorage.setItem('fullName', data.full_name)
   localStorage.setItem('role', data.role)
+  localStorage.setItem('card_id', data.card_id)
   router.push('/home')
 } else {
   alert('Hibás email vagy jelszó.')
@@ -67,6 +68,7 @@ async function login() {
   // Sikeres belépés
   localStorage.setItem('fullName', data.full_name)
   localStorage.setItem('role', data.role)
+  localStorage.setItem('card_id', data.card_id)
   router.push('/home')
 }
 </script>

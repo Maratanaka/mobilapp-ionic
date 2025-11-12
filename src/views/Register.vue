@@ -9,6 +9,9 @@
 
         <ion-card>
           <ion-card-content>
+            <ion-item>
+              <ion-input v-model="card_id" type="text" placeholder="Kártya ID"></ion-input>
+            </ion-item>
 
             <ion-item>
               <ion-input v-model="fullName" type="text" placeholder="Teljes név"></ion-input>
@@ -20,6 +23,10 @@
 
             <ion-item>
               <ion-input v-model="password" type="password" placeholder="Jelszó"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input v-model="authority" type="text" placeholder="AUTORITI"></ion-input>
             </ion-item>
 
             <ion-item>
@@ -57,17 +64,19 @@ import {
   IonPage, IonContent, IonItem, IonInput, IonSelect, IonSelectOption, IonButton, IonCard, IonCardContent
 } from '@ionic/vue'
 
+const card_id = ref('')
 const fullName = ref('')
 const email = ref('')
 const password = ref('')
 const role = ref('')
+const authority = ref('')
 const mounted = ref(false)
 const router = useRouter()
 
 onMounted(() => { mounted.value = true })
 
 async function register() {
-  if (!fullName.value || !email.value || !password.value || !role.value) {
+  if (!card_id.value || !fullName.value || !email.value || !password.value || !role.value || !authority.value) {
     alert('Tölts ki minden mezőt!')
     return
   }
@@ -78,10 +87,12 @@ async function register() {
   const { error } = await supabase
     .from('users')
     .insert([{ 
+      card_id: card_id.value,
       full_name: fullName.value, 
       email: email.value, 
       password_hash: hashedPassword, 
-      role: role.value 
+      role: role.value,
+      authority: authority.value
     }])
 
   if (error) {

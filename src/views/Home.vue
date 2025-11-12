@@ -11,6 +11,7 @@
         <ion-card>
           <ion-card-content class="text-center">
             <h2>Üdv, {{ fullName }}!</h2>
+            <p>ID: {{ card_id }}</p>
             <p>A te beosztásod: <strong>{{ role }}</strong></p>
           </ion-card-content>
         </ion-card>
@@ -35,11 +36,13 @@ export default {
   setup() {
     const router = useRouter()
     const fullName = ref('')
+    const card_id = ref('')
     const role = ref('')
 
     onMounted(() => {
       fullName.value = localStorage.getItem('fullName') || 'Felhasználó'
       role.value = localStorage.getItem('role') || 'Ismeretlen'
+      card_id.value = localStorage.getItem('card_id') || 'N/A'
     })
 
     function logout() {
