@@ -5,7 +5,7 @@
 
         <!-- Logó -->
         <div class="logo-container">
-          <img src="\axoradata_white.png" alt="App Logo" class="app-logo" />
+          <img src="/axora.png" alt="App Logo" class="app-logo" />
         </div>
 
         <ion-card>
@@ -58,6 +58,10 @@ export default {
 </script>
 
 <style scoped>
+ion-content {
+  --background: #222831 ;
+}
+
 .home-wrapper {
   display: flex;
   flex-direction: column;
@@ -92,11 +96,12 @@ ion-card {
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   margin-bottom: 20px;
+  background-color: #222831
 }
 
 ion-button {
   --border-radius: 12px;
-  --background: #387eff;
-  --color: #fff;
+  --background: #948979;
+  --color: #222831;
 }
 </style>

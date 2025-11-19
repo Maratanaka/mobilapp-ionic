@@ -4,7 +4,7 @@
       <div class="page-wrapper">
 
         <div class="logo-container">
-          <img src="/axoradata_white.png" alt="App Logo" class="app-logo" />
+          <img src="/axora.png" alt="App Logo" class="app-logo" />
         </div>
 
         <ion-card>
@@ -105,7 +105,13 @@ async function register() {
 </script>
 
 
+
 <style scoped>
+ion-content {
+  --background: #222831 ;
+}
+
+
 .page-wrapper {
   display: flex;
   flex-direction: column;
@@ -131,13 +137,14 @@ ion-card {
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   margin: 0 auto;
+  background-color: #222831;
 }
 
 /* Input és Select világos/sötét módhoz */
 ion-item, ion-input, ion-select {
   --background: transparent;
-  --color: var(--ion-text-color);
-  --placeholder-color: var(--ion-color-step-500);
+  --color: #948979;
+  --placeholder-color: #948979;
 }
 
 /* Select felugró lista világos/sötét módhoz */
@@ -149,15 +156,15 @@ body .sc-ion-select-md-h {
 /* Button */
 ion-button {
   --border-radius: 12px;
-  --background: var(--ion-color-primary);
-  --color: var(--ion-color-light);
+  --background: #948979;
+  --color: #222831;
   font-weight: bold;
   padding: 12px 0;
 }
 
 /* Link */
 .no-underline {
-  color: var(--ion-color-primary);
+  color: #948979;
   text-decoration: none;
   font-weight: bold;
 }

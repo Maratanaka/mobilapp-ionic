@@ -26,9 +26,14 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue
 </script>
 
 <style scoped>
-#container {
+ion-content {
+  --background: #222831 ;
+}
+
+.container {
   text-align: center;
-  
+    background-color: #222831;
+
   position: absolute;
   left: 0;
   right: 0;
@@ -36,7 +41,7 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue
   transform: translateY(-50%);
 }
 
-#container strong {
+.container strong {
   font-size: 20px;
   line-height: 26px;
 }
